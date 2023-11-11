@@ -15,7 +15,7 @@ describe('BandEnrichmentService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('AddAll', () => {
+  describe('addAll', () => {
     it('should work with empty arrays', () => {
       const testData: IncompleteBand = {
         members: {
@@ -29,10 +29,10 @@ describe('BandEnrichmentService', () => {
         }
       };
       
-      expect(service.AddAll(testData).members.all.length).toEqual(3);
-      expect(service.AddAll({ members: { ...testData.members, current: [] } }).members.all.length).toEqual(1);
-      expect(service.AddAll({ members: { ...testData.members, past: [] } }).members.all.length).toEqual(2);
-      expect(service.AddAll({ members: { current: [], past: [] } }).members.all.length).toEqual(0);
+      expect(service.addAll(testData).members.all.length).toEqual(3);
+      expect(service.addAll({ members: { ...testData.members, current: [] } }).members.all.length).toEqual(1);
+      expect(service.addAll({ members: { ...testData.members, past: [] } }).members.all.length).toEqual(2);
+      expect(service.addAll({ members: { current: [], past: [] } }).members.all.length).toEqual(0);
     });
 
     it('should return names in lowercase', () => {
@@ -48,7 +48,7 @@ describe('BandEnrichmentService', () => {
         }
       };
 
-      const actual = service.AddAll(testData);
+      const actual = service.addAll(testData);
 
       expect(actual.members.all).toEqual(jasmine.arrayWithExactContents(['aapo-kalevi jukanpoika', 'someguy', 'weird name']));
     });
@@ -57,8 +57,8 @@ describe('BandEnrichmentService', () => {
       const testData: IncompleteBand = {
         members: {
           current: [
-            {name: 'Zorro', age: 1, plays: []},
-            {name: 'someGuy', age: 98, plays: []},
+            {name: 'Zorro', age: 98, plays: []},
+            {name: 'someGuy', age: 1, plays: []},
             {name: 'Aapo-Kalevi Jukanpoika', age: 12, plays: []},
           ],
           past: [
@@ -68,13 +68,13 @@ describe('BandEnrichmentService', () => {
         }
       };
 
-      const actual = service.AddAll(testData).members.all.map(name => name.toLowerCase());
+      const actual = service.addAll(testData).members.all.map(name => name.toLowerCase());
 
       expect(actual).toEqual(['zorro', '', 'aapo-kalevi jukanpoika', 'thor', 'someguy']);
     });
   });
 
-  describe('AddPlays', () => {
+  describe('addPlays', () => {
     it('should work with empty current or past', () => {
 
     });
