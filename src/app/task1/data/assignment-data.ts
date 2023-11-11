@@ -1,6 +1,6 @@
-import { Band, IncompleteBand } from "../interfaces/band.interface";
+import { IBand, IIncompleteBand } from "../interfaces/band.interface";
 
-export const band: IncompleteBand = {
+export const band: IIncompleteBand = {
     members: {
         current: [
             {name: 'Sascha', age: 59, plays: ['vocals', 'synth', 'guitar', 'bass']},
@@ -16,7 +16,7 @@ export const band: IncompleteBand = {
     }
 };
 
-export const expected: Band = {
+export const expected: IBand = {
   members: {
     // current: no changes
     current: [
