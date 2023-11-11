@@ -1,7 +1,6 @@
-import { Band } from "../interfaces/band.interface";
-import { NestedPartial } from "../types/nested-partial";
+import { Band, IncompleteBand } from "../interfaces/band.interface";
 
-export const band: NestedPartial<Band> = {
+export const band: IncompleteBand = {
     members: {
         current: [
             {name: 'Sascha', age: 59, plays: ['vocals', 'synth', 'guitar', 'bass']},
