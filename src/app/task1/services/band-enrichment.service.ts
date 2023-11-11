@@ -26,7 +26,29 @@ export class BandEnrichmentService {
     };
   } 
 
-  addPlays<T extends IncompleteBand>(band: T): T  & Required<Pick<T, 'plays'>> {
-    return { ...band, plays: {} };
+  private getDistinctPlays(member: Member): string[]
+  {
+    return member.plays.reduce((distinctPlays, play) => distinctPlays.includes(play) ? distinctPlays : distinctPlays.concat([play]), [] as string[]);
+  }
+
+  private createPlaysObject(members: Member[]): Record<string, string[]> {
+    return members.reduce((plays, member) => {
+      this.getDistinctPlays(member).forEach(play => {
+        if (!(play in plays)) {
+          plays[play] = [];
+        }
+
+        plays[play] = plays[play].concat([member.name.toLowerCase()])
+      });
+
+      return plays;
+    }, { } as Record<string, string[]>);
+  }
+
+  addPlays<T extends IncompleteBand>(band: T): Required<IncompleteBand> {
+    return { 
+      ...band, 
+      plays: this.createPlaysObject(band.members.current.concat(band.members.past))
+    };
   }
 }

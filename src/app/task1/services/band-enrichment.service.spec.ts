@@ -142,7 +142,7 @@ describe('BandEnrichmentService', () => {
         }
       };
 
-      expect(Object.keys(service.addPlays(testData).plays).length).toEqual(jasmine.arrayWithExactContents(['play1', 'play2']));
+      expect(Object.keys(service.addPlays(testData).plays)).toEqual(jasmine.arrayWithExactContents(['play1', 'play2']));
     });
 
     it('should transform names to lowercase', () => {
