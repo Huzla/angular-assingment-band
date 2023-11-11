@@ -1,0 +1,20 @@
+<div class="flex flex-col">
+    <div class="flex flex-row gap-5">
+        <div>
+            <h3 class="text-l text-bold mb-2">Incomplete band</h3>
+            {{ json.stringify(incompleteBand$ | async) }}
+        </div>
+    
+        <div>
+            <h3 class="text-l text-bold mb-2">Expected band</h3>
+            {{ json.stringify(expectedBand$ | async) }}
+        </div>
+    </div> 
+
+    <button 
+        class="my-5 p-5 bg-lime-700 rounded w-max place-self-center"
+        (click)="onClick()"
+    >
+        Enrich incomplete band
+    </button>
+</div>
