@@ -1,11 +1,11 @@
-import { Member } from "./member.interface";
+import { IMember } from "./member.interface";
 
-export interface BandMembers extends IncompleteBandMembers {
+export interface IBandMembers extends IIncompleteBandMembers {
     all: string[];
 }
 
-export interface IncompleteBandMembers {
-    current: Member[];
-    past: Member[];
+export interface IIncompleteBandMembers {
+    current: IMember[];
+    past: IMember[];
     all?: string[];
 }

@@ -1,11 +1,11 @@
-import { BandMembers, IncompleteBandMembers } from "./band-members.interface";
+import { IBandMembers, IIncompleteBandMembers } from "./band-members.interface";
 
-export interface Band extends IncompleteBand {
-    members: BandMembers;
+export interface IBand extends IIncompleteBand {
+    members: IBandMembers;
     plays: Record<string, string[]>;
 }
 
-export interface IncompleteBand {
-    members: IncompleteBandMembers;
+export interface IIncompleteBand {
+    members: IIncompleteBandMembers;
     plays?: Record<string, string[]>;
 }

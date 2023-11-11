@@ -5,8 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-task1',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './task1.component.html',
-  styleUrl: './task1.component.scss'
+  templateUrl: './task1.component.html'
 })
 export class Task1Component {
 

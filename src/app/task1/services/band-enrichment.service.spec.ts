@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { BandEnrichmentService } from './band-enrichment.service';
-import { IncompleteBand } from '../interfaces/band.interface';
+import { IIncompleteBand } from '../interfaces/band.interface';
 
 describe('BandEnrichmentService', () => {
   let service: BandEnrichmentService;
@@ -17,7 +17,7 @@ describe('BandEnrichmentService', () => {
 
   describe('addAll', () => {
     it('should work with empty arrays', () => {
-      const testData: IncompleteBand = {
+      const testData: IIncompleteBand = {
         members: {
           current: [
             { name: 'a', age: 1, plays: [] },
@@ -36,7 +36,7 @@ describe('BandEnrichmentService', () => {
     });
 
     it('should return names in lowercase', () => {
-      const testData: IncompleteBand = {
+      const testData: IIncompleteBand = {
         members: {
           current: [
             { name: 'Aapo-Kalevi Jukanpoika', age: 1, plays: [] },
@@ -54,7 +54,7 @@ describe('BandEnrichmentService', () => {
     });
 
     it('should return names sorted first by age DESC and then name ASC', () => {
-      const testData: IncompleteBand = {
+      const testData: IIncompleteBand = {
         members: {
           current: [
             { name: 'Zorro', age: 98, plays: [] },
@@ -76,7 +76,7 @@ describe('BandEnrichmentService', () => {
 
   describe('addPlays', () => {
     it('should work with empty current or past', () => {
-      const testData: IncompleteBand = {
+      const testData: IIncompleteBand = {
         members: {
           current: [
             { name: 'a', age: 1, plays: ['play1'] },
@@ -96,7 +96,7 @@ describe('BandEnrichmentService', () => {
     });
 
     it('should not add members with empty plays array to any play', () => {
-      const testData: IncompleteBand = {
+      const testData: IIncompleteBand = {
         members: {
           current: [
             { name: 'a', age: 1, plays: ['play1'] },
@@ -129,7 +129,7 @@ describe('BandEnrichmentService', () => {
     });
 
     it('should add every play once', () => {
-      const testData: IncompleteBand = {
+      const testData: IIncompleteBand = {
         members: {
           current: [
             { name: 'a', age: 1, plays: ['play1'] },

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Band, IncompleteBand } from '../interfaces/band.interface';
-import { BandMembers } from '../interfaces/band-members.interface';
-import { Member } from '../interfaces/member.interface';
+import { IBandMembers } from '../interfaces/band-members.interface';
+import { IMember } from '../interfaces/member.interface';
+import { IIncompleteBand } from '../interfaces/band.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,28 +10,28 @@ export class BandEnrichmentService {
 
   constructor() { }
 
-  private getSortedMemberNames(members: Member[]): string[] {
+  private getSortedMemberNames(members: IMember[]): string[] {
     return members
     .sort((firstMember, secondMember) => firstMember.age == secondMember.age ? firstMember.name.toLocaleLowerCase().localeCompare(secondMember.name.toLocaleLowerCase()) :  secondMember.age - firstMember.age)
     .map(member => member.name.toLocaleLowerCase());
   }
 
-  addAll<T extends IncompleteBand>(band: T): Omit<T, 'members'> & { members: BandMembers } {
+  addAll<T extends IIncompleteBand>(IBand: T): Omit<T, 'members'> & { members: IBandMembers } {
     return { 
-      ...band, 
+      ...IBand, 
       members: { 
-        ...band.members, 
-        all: this.getSortedMemberNames(band.members.current.concat(band.members.past))
+        ...IBand.members, 
+        all: this.getSortedMemberNames(IBand.members.current.concat(IBand.members.past))
       } 
     };
   } 
 
-  private getDistinctPlays(member: Member): string[]
+  private getDistinctPlays(member: IMember): string[]
   {
     return member.plays.reduce((distinctPlays, play) => distinctPlays.includes(play) ? distinctPlays : distinctPlays.concat([play]), [] as string[]);
   }
 
-  private createPlaysObject(members: Member[]): Record<string, string[]> {
+  private createPlaysObject(members: IMember[]): Record<string, string[]> {
     return members.reduce((plays, member) => {
       this.getDistinctPlays(member).forEach(play => {
         if (!(play in plays)) {
@@ -45,10 +45,10 @@ export class BandEnrichmentService {
     }, { } as Record<string, string[]>);
   }
 
-  addPlays<T extends IncompleteBand>(band: T): Required<IncompleteBand> {
+  addPlays<T extends IIncompleteBand>(IBand: T): Required<IIncompleteBand> {
     return { 
-      ...band, 
-      plays: this.createPlaysObject(band.members.current.concat(band.members.past))
+      ...IBand, 
+      plays: this.createPlaysObject(IBand.members.current.concat(IBand.members.past))
     };
   }
 }
