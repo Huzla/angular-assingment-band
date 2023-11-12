@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomizableDialogComponent } from './customizable-dialog/customizable-dialog.component';
-import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-task2',

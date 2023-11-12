@@ -1,4 +1,4 @@
-import { Component, Input, booleanAttribute } from '@angular/core';
+import { Component, Input, OnInit, booleanAttribute } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   templateUrl: './customizable-dialog.component.html',
   styleUrl: './customizable-dialog.component.scss'
 })
-export class CustomizableDialogComponent {
+export class CustomizableDialogComponent implements OnInit {
   @Input() title: string | undefined;
   @Input({ transform: booleanAttribute }) closed: boolean | undefined;
 
