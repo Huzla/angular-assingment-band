@@ -1,0 +1,7 @@
+<div *ngIf="!(shouldClose$ | async)" class="customizable-dialog">
+    <div class="dialog-title-area">
+        <h4 *ngIf="title !== undefined"class="dialog-title">{{ title }}</h4>
+        <button class="dialog-close-button" (click)="close()">X</button>
+    </div>
+    <ng-content></ng-content>
+</div>
