@@ -62,9 +62,7 @@ describe('CustomizableDialogComponent', () => {
     fixture.detectChanges();
     component.ngOnInit();
 
-    spyOn(component, 'close');
-
-    const closeButtonElement = fixture.nativeElement.querySelector('.close-button');
+    const closeButtonElement = fixture.nativeElement.querySelector('.dialog-close-button');
     closeButtonElement.click();
 
     const observerSpy = subscribeSpyTo(component.shouldClose$);

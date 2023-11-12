@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, booleanAttribute } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -11,7 +11,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class CustomizableDialogComponent {
   @Input() title: string | undefined;
-  @Input() closed: boolean | undefined;
+  @Input({ transform: booleanAttribute }) closed: boolean | undefined;
 
   private _shouldCloseSubject$!: BehaviorSubject<boolean>;
   shouldClose$!: Observable<boolean>;
