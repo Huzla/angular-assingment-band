@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 
 import { CustomizableDialogComponent } from './customizable-dialog.component';
@@ -22,75 +22,74 @@ describe('CustomizableDialogComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('smoke test', () => {
-    it('should not use title when undefined', () => {
-      fixture.detectChanges();
-
-      const titleElement = fixture.nativeElement.querySelector('.dialog-title');
-
-      expect(titleElement).toEqual(null);
-    });
-
-    it('should use title passed as input', () => {
-      component.title = 'Title goes here';
-      fixture.detectChanges();
-
-      const titleElement = fixture.nativeElement.querySelector('.dialog-title');
-
-      expect(titleElement.textContent).toEqual('Title goes here');
-    });
-
-    it('should be closed by default', () => {
-      const observerSpy = subscribeSpyTo(component.shouldClose$);
-
-      expect(observerSpy.getValues()).toEqual([true]);
-    });
-
-    it('should allow showing based on input', () => {
-      component.closed = false;
-      fixture.detectChanges();
-      component.ngOnInit();
-
-      const observerSpy = subscribeSpyTo(component.shouldClose$);
-
-      expect(observerSpy.getValues()).toEqual([false]);
-    });
-  });
-
-  it('should call close on x button click', () => {
-    component.closed = false;
-    fixture.detectChanges();
-    component.ngOnInit();
-
-    const closeButtonElement = fixture.nativeElement.querySelector('.dialog-close-button');
-    closeButtonElement.click();
+  it('should be closed by default', () => {
+    const dialogElement = fixture.nativeElement.querySelector('.customizable-dialog');
 
     const observerSpy = subscribeSpyTo(component.shouldClose$);
 
-    expect(observerSpy.getValues()).toEqual([true])
+    expect(observerSpy.getValues()).toEqual([true]);
+    expect(dialogElement).toEqual(null);
   });
 
-  describe('close', () => {
-    it('should push to stream', () => {
+  describe('visible state test', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(CustomizableDialogComponent);
+      component = fixture.componentInstance;
       component.closed = false;
       fixture.detectChanges();
       component.ngOnInit();
+    });
 
-      component.close();
-
+    describe('smoke test', () => {
+      it('should allow showing based on input', () => {
+        const observerSpy = subscribeSpyTo(component.shouldClose$);
+  
+        expect(observerSpy.getValues()).toEqual([false]);
+      });
+      
+      it('should not use title when undefined', () => {
+        const titleElement = fixture.nativeElement.querySelector('.dialog-title');
+  
+        expect(titleElement).toEqual(null);
+      });
+  
+      it('should use title passed as input', () => {
+        component.title = 'Title goes here';
+        fixture.detectChanges();
+  
+        const titleElement = fixture.nativeElement.querySelector('.dialog-title');
+  
+        expect(titleElement.textContent).toEqual('Title goes here');
+      });
+    });
+  
+    it('should close on x button click', () => { 
+      const closeButtonElement = fixture.nativeElement.querySelector('.dialog-close-button');
+      closeButtonElement.click();
+  
       const observerSpy = subscribeSpyTo(component.shouldClose$);
-
+  
       expect(observerSpy.getValues()).toEqual([true])
     });
-  });
-
-  describe('show', () => {
-    it('should push to close stream', () => {
-      component.show();
-
-      const observerSpy = subscribeSpyTo(component.shouldClose$);
-      
-      expect(observerSpy.getValues()).toEqual([false])
+  
+    describe('close', () => {
+      it('should push to stream', () => {
+        component.close();
+  
+        const observerSpy = subscribeSpyTo(component.shouldClose$);
+  
+        expect(observerSpy.getValues()).toEqual([true])
+      });
+    });
+  
+    describe('show', () => {
+      it('should push to close stream', () => {
+        component.show();
+  
+        const observerSpy = subscribeSpyTo(component.shouldClose$);
+        
+        expect(observerSpy.getValues()).toEqual([false])
+      });
     });
   });
 });
