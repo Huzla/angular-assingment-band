@@ -16,7 +16,7 @@ My solutions for the two tasks are under `src/app/task1` and `srx/app/task2`. Th
 
 ## Some thoughts on the solutions
 
-I focused on compliting the functionality described in the assignment. Therefore, only the dialog component and the band enrinchment service are tested. Additionally, to increase the flexibility of the dialog, I designed it to be usable without any particular library. Therefore, eventhough the surrounding code uses RXJS
-the dialog does not. 
+I focused on completing the functionality described in the assignment. Therefore, only the dialog component and the band enrinchment service are tested. Additionally, to increase the flexibility of the dialog, I designed it to be usable without any particular library. Therefore, eventhough the surrounding code uses RXJS
+the dialog does not require it. If the component was designed for a project using RXJS, I would have replaced the `open` and `close` methods with an observable given as an input.
 
 
