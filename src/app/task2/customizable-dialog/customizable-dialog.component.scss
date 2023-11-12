@@ -1,12 +1,14 @@
 .customizable-dialog {
     position: absolute;
     top: 30%;
-    border: 0.2rem solid #ccc;
+    left: 30%;
+    width: 50%;
+    border: 0.2rem solid #ddd;
     border-radius: 0.2rem;
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    background-color: #aaa;
 }
 
 .dialog-title-area {

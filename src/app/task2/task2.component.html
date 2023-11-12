@@ -1,5 +1,6 @@
-<div>
-    <app-customizable-dialog title="Fun title" closed="false">
+<div class="flex flex-row justify-around">
+    <button class="bg-sky-400 py-1 px-2 rounded" (click)="onFirstButtonClick()">Open first example</button>
+    <app-customizable-dialog #dialog1 title="Important information">
         <article class="flex flex-col gap-5">
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget tincidunt ante, eu mattis nisi. Fusce at efficitur neque. Vestibulum porta est vel dui porttitor hendrerit. Suspendisse ultricies lectus metus, vitae lacinia dolor scelerisque id. Fusce quam lacus, tempor a mattis vel, bibendum non est. Morbi sit amet urna risus. Cras blandit nunc ut molestie convallis. Nullam pharetra iaculis tellus. Suspendisse et sapien blandit est tempor tempus non eu velit. Praesent eget scelerisque enim. Maecenas sollicitudin consectetur nulla, quis congue lorem posuere ac. In hac habitasse platea dictumst. Sed molestie consectetur lorem, ut hendrerit felis consequat faucibus. Nam lacinia, magna vitae congue commodo, odio tellus eleifend dui, eget bibendum tellus massa sed tellus. Nulla sit amet ipsum fermentum, faucibus nisl vel, consequat enim.
@@ -13,5 +14,13 @@
                 Maecenas finibus metus a est hendrerit iaculis. Integer vitae nisi ut libero commodo condimentum. Suspendisse dictum felis id nulla vestibulum fringilla. Cras ut massa feugiat, tempor erat at, tristique dolor. Mauris euismod molestie dictum. Sed gravida sollicitudin scelerisque. Nunc malesuada sit amet ex non commodo. Pellentesque ullamcorper magna ut nibh volutpat faucibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean ac accumsan orci. Aenean tortor lorem, rutrum eu enim sit amet, placerat pulvinar neque. Ut in sem tempor, placerat justo ut, ullamcorper dui. Suspendisse eget justo eleifend, interdum enim sed, malesuada quam. Vestibulum sapien turpis, suscipit et nulla laoreet, egestas lobortis nibh. Mauris euismod bibendum ex, ac rhoncus eros sollicitudin nec.
             </p>
         </article>
+    </app-customizable-dialog>
+
+    <button class="bg-sky-400 py-1 px-2 rounded" (click)="onSecondButtonClick()">Open second example</button>
+    <app-customizable-dialog #dialog2 closed="false" title="Close with button">
+        <h5>
+            The dialog can be closed with this button.
+        </h5>
+        <button class="bg-red-400 p-5 rounded" (click)="onChildButtonClick()">Close dialog</button>
     </app-customizable-dialog>
 </div>

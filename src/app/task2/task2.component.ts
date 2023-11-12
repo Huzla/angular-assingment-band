@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomizableDialogComponent } from './customizable-dialog/customizable-dialog.component';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-task2',
@@ -9,5 +10,18 @@ import { CustomizableDialogComponent } from './customizable-dialog/customizable-
   templateUrl: './task2.component.html'
 })
 export class Task2Component {
+  @ViewChild('dialog1') firstDialog!: CustomizableDialogComponent;
+  @ViewChild('dialog2') secondDialog!: CustomizableDialogComponent;
 
+  onFirstButtonClick() {
+    this.firstDialog.show();
+  }
+
+  onSecondButtonClick() {
+    this.secondDialog.show();
+  }
+
+  onChildButtonClick() {
+    this.secondDialog.close();
+  }
 }
